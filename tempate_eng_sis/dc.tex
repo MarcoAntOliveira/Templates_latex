@@ -1,6 +1,6 @@
 \documentclass[journal]{IEEEtran}
 
-% Pacotes essenciais
+% Compilar com XeLaTeX ou LuaLaTeX
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
@@ -17,36 +17,37 @@
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage{everypage}
-\usepackage{amsfonts}
+\usepackage{fontspec} % Importante para fontes modernas
 
-% Margens
-\geometry{a4paper, margin=2.5cm}
+
+
 
 % Cabeçalho e rodapé
 \pagestyle{fancy}
-\fancyhf{}
-\rhead{\textit{Engenharia de sistemas}}
-\lhead{\textit{Verification \& Validation Plan} }
+\fancyhf{}\rhead{\textit{Engenharia de sistemas}}
+\lhead{\textit{System Requirements Document (SRD) / System Specification}}%alterar
 \fancyfoot[C]{\thepage}
 
 % Contador de página para ativar barras só a partir da 3ª página
 \newcounter{mypage}
+
 \AddEverypageHook{%
   \stepcounter{mypage}%
-  \ifnum\themypage>2
+  \ifnum\themypage>1
     % Barra superior
     \begin{tikzpicture}[remember picture,overlay]
-      \fill[gray!20] (current page.north west) rectangle ([yshift=-1.8cm]current page.north east);
+      \fill[gray!20] (current page.north west) rectangle ([yshift=-2.65cm]current page.north east);
       \node[anchor=north, text=black, font=\bfseries\large] at ([yshift=-0.9cm]current page.north)
       {};
     \end{tikzpicture}
     % Barra inferior
     \begin{tikzpicture}[remember picture,overlay]
-      \fill[gray!20] (current page.south west) rectangle ([yshift=2.0cm]current page.south east);
-      \node[anchor=south, text=black, font=\bfseries\small] at ([yshift=0.9cm]current page.south) {\textit{Universidade Federal de Santa Catarina} };
+  \fill[gray!20] (current page.south west) rectangle ([yshift=2.1cm]current page.south east);
+      \node[anchor=south, text=black, font=\bfseries\small] at ([yshift=0.9cm]current page.south) {\textit{Universidade Federal de Santa Catarina }};
     \end{tikzpicture}
   \fi
 }
+
 
 
 % Estilo de sumário
@@ -57,151 +58,84 @@
 % Formato das seções
 \titleformat{\section}{\bfseries\large}{\thesection.}{1em}{}
 
+
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+
+
+
 % Capa
 \begin{document}
 \begin{titlepage}
+
     \centering
     \vspace*{3cm}
-    {\Huge\bfseries Verification \& Validation Plan \\[1.5em]}
+    {\Huge\bfseries System Requirements Document (SRD) / System Specification \\[1.5em]}
 
-    {\large\textit{}}\\[6em]
-    \includegraphics[width=0.3\textwidth]{ufsc}\\[2em]
+    {\large\textit{}}\\[7em]
+    \includegraphics[width=0.3\textwidth]{ufsc}\\[1em]
     {\Large \textit{Engenharia de sistemas}}
     \vfill
     %\today
 \end{titlepage}
 
+
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+
+
+
 % Folha de rosto
 \newpage
-\thispagestyle{empty}
+
 \begin{center}
-    \Large\textbf{Verification \& Validation Plan}\\[2em]
-    \large
-    \begin{itemize}
-        \item \textit{Outlines how requirements will be verified
-        (testing, analysis, inspection,
-        demonstration).}
-        \item \textit{Includes Acceptance Criteria and TestConcept\\[4em]}
-    \end{itemize}
+    \Large\textbf{System Requirements Document (SRD) / System Specification}\\[2em]
+    \large Contains high-level system requirements
+        (functional, performance, interface, environmental,
+        etc.).
+        Should be traceable to stakeholder needs (e.g.,
+        Customer Requirements Document). )%alterar
 
     %\textbf{Revisado em:} 12 de dezembro de 2023\\
     %\textbf{Organização:} RoboCore\\[6em]
     %\textbf{Link:} \href{https://events.robocore.net}{https://events.robocore.net}
 \end{center}
+
+
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+
+
 
 % Sumário visual personalizado
 \newpage
 \section*{Sumário}
-\renewcommand{\contentsname}{}
+
 
 \begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{1. \textit{Introdução}} \hfill \textbf{03}
+\textbf{1. Requisitos} \hfill \textbf{\pageref{sec:requisitos}}
 \end{tcolorbox}
+
 \begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{2. A Competição} \hfill \textbf{03}
+\textbf{2. Especificação do sistema} \hfill \textbf{\pageref{sec:especificacao}}
 \end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{3. Especificações dos Robôs} \hfill \textbf{03}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{4. O Percurso} \hfill \textbf{04}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{5. Desenvolvimento da Competição} \hfill \textbf{05}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{6. Regras para as Disputas} \hfill \textbf{06}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{7. Penalidades} \hfill \textbf{07}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=gray!20, colframe=white, boxrule=0pt, arc=0pt]
-\textbf{8. Módulo de Início} \hfill \textbf{08}
-\end{tcolorbox}
+
+
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+
+
 
 \newpage
-\begin{titlepage}
-\begin{center}
-    \Large\textbf{Contributors}\\[2em]
-
-    \begin{itemize}
-        \item \textbf{Marcos Antonio Tomé Oliveira} \\\textit{Graduando em engenharia mecatrônica}\\[0.5em]
-
-    \end{itemize}
-
-    %\textbf{Revisado em:} 12 de dezembro de 2023\\
-    %\textbf{Organização:} RoboCore\\[6em]
-    %\textbf{Link:} \href{https://events.robocore.net}{https://events.robocore.net}
-\end{center}
-\end{titlepage}
-% Conteúdo das seções
-\newpage
-\section{\textit{Introdução}}
-
-\subsection{Sistemas estáticos x sistemas dinâmicos}
-\begin{itemize}
-    \item \textbf{Sistemas Estáticos:} saída depende apenas do valor atual da entrada.
-    \begin{itemize}
-        \item Não possui memória
-        \item Sem dependência temporal
-        \item Representado por função algébrica
-    \end{itemize}
-    \item \textbf{Sistemas Dinâmicos:} saída depende de entradas passadas.
-    \begin{itemize}
-        \item Possui memória
-        \item Representado por equações diferenciais ou de diferenças
-    \end{itemize}
-\end{itemize}
-
-\section{Controlador PID}
-
-\subsection{Ganho proporcional}
-
-\textbf{Efeitos Positivos}
-\begin{itemize}
-    \item Reduz tempo de subida
-    \item Atua na velocidade e precisão
-    \item Melhora rejeição a distúrbios
-\end{itemize}
-
-\textbf{Efeitos Negativos}
-\begin{itemize}
-    \item Overshoot excessivo
-    \item Não elimina erro em regime
-    \item Pode causar instabilidade
-\end{itemize}
-
-\subsection{Efeitos do Ganho Integral}
-\textbf{Efeitos Positivos}
-\begin{itemize}
-    \item Elimina erro em regime permanente
-    \item Aumenta robustez
-    \item Considera erros acumulados
-\end{itemize}
-
-\textbf{Efeitos Negativos}
-\begin{itemize}
-    \item Pode causar oscilações
-    \item Aumenta tempo de resposta
-    \item Instabilidade com ganho elevado
-\end{itemize}
-
-\subsection{Ganho Derivativo}
-
-O ganho derivativo prevê o comportamento futuro do erro com base na sua variação.
-
-\textbf{Como funciona:}
-\begin{itemize}
-    \item Calcula a derivada do erro
-    \item Aplica ganho proporcional à taxa de variação
-\end{itemize}
-
-\textbf{Efeitos:}
-\begin{itemize}
-    \item Amortece oscilações
-    \item Reduz overshoot
-    \item Melhora estabilidade
-    \item Não atua em erro constante
-\end{itemize}
-
+% conteudo
+\input{conteudo}
+\input{contributors}
 \end{document}
